@@ -44,12 +44,9 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 */
 
 //$router->get('/', 'Welcome::index');
-$router->get('/', 'StudentsController::get_all');
-$router->get('/students/create', 'StudentsController::create');
-$router->post('/students/create', 'StudentsController::create');
-$router->get('/students', 'StudentsController::get_all');
-$router->get('/students/update/{id}', 'StudentsController::update');
-$router->post('/students/update/{id}', 'StudentsController::update');
+$router->match('/', 'StudentsController::create', ['GET', 'POST']);
+$router->match('/students/get-all', 'StudentsController::get_all', ['GET', 'POST']);
+$router->match('/students/update', 'StudentsController::update', ['GET', 'POST']);
 $router->get('/students/delete/{id}', 'StudentsController::delete');
 $router->get('/students/soft-delete/{id}', 'StudentsController::soft_delete');
 
