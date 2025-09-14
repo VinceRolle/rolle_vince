@@ -43,8 +43,8 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 
-$router->get('/', 'Welcome::index');
-$router->get('/students/get-all', 'StudentsController::get_all');
+//$router->get('/', 'Welcome::index');
+$router->get('/', 'StudentsController::get_all');
 $router->get('/students/create', 'StudentsController::create');
 $router->post('/students/create', 'StudentsController::create');
 $router->get('/students', 'StudentsController::get_all');
