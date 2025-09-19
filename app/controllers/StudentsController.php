@@ -33,7 +33,7 @@ class StudentsController extends Controller {
         $this->pagination->set_theme('bootstrap'); // or 'tailwind', or 'custom'
         $this->pagination->initialize($total_rows, $records_per_page, $page, site_url('students').'?q='.$q);
         $data['page'] = $this->pagination->paginate();
-        $this->call->view('get_all', $data);
+        $this->call->view('students/get_all', $data);
         }
      function create() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
