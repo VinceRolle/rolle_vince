@@ -8,32 +8,8 @@ class StudentsController extends Controller {
         parent::__construct();
     }
     function get_all() {
-                $page = 1;
-        if(isset($_GET['page']) && ! empty($_GET['page'])) {
-            $page = $this->io->get('page');
-        }
-
-        $q = '';
-        if(isset($_GET['q']) && ! empty($_GET['q'])) {
-            $q = trim($this->io->get('q'));
-        }
-
-        $records_per_page = 10;
-
-        $all = $this->StudentsModel->get_all($q, $records_per_page, $page);
-        $data['all'] = $all['records'];
-        $total_rows = $all['total_rows'];
-        $this->pagination->set_options([
-            'first_link'     => '⏮ First',
-            'last_link'      => 'Last ⏭',
-            'next_link'      => 'Next →',
-            'prev_link'      => '← Prev',
-            'page_delimiter' => '&page='
-        ]);
-        $this->pagination->set_theme('bootstrap'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page, site_url('students').'?q='.$q);
-        $data['page'] = $this->pagination->paginate();
-        $this->view('students/get_all', $data);
+            $students = $this->StudentsModel->all();   
+            $this->call->view('students/get_all', ['students' => $students]);
         }
      function create() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
