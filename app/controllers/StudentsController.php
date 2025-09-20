@@ -21,7 +21,7 @@ class StudentsController extends Controller {
             $this->StudentsModel->insert($data);
             redirect('students');
         }
-        $this->call->view('/students/create');
+        $this->call->view('students/create');
     }
     function update($id) {
         $student = $this->StudentsModel->find($id);
