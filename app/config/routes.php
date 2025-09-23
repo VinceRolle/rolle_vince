@@ -50,4 +50,5 @@ $router->match('/students/update/{id}', 'StudentsController::update', ['GET', 'P
 $router->get('/students/delete/{id}', 'StudentsController::delete');
 $router->get('students/soft-delete/{id}', 'StudentsController::soft_delete');
 $router->match('/students/create', 'StudentsController::create', ['GET', 'POST']);
+$router->get('/students', 'StudentsController::get_all');
 
