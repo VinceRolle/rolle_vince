@@ -6,18 +6,21 @@
   <title>Edit Student</title>
   <style>
     :root {
-      --bg: linear-gradient(135deg, #ffb347 0%, #ffcc80 100%);
-      --card-bg: #fff6e9;
-      --primary: #ff7043;
-      --primary-hover: #ff9800;
-      --border: #ffd699;
-      --text: #4e260e;
-      --muted: #b85c38;
-      --radius: 18px;
-      --input-bg: #fffbe6;
-      --input-focus: #fff;
-      --shadow: 0 8px 32px 0 rgba(255, 140, 0, 0.18);
-      font-family: 'Segoe UI', system-ui, sans-serif;
+      --bg: linear-gradient(135deg, #3B82F6 0%, #FCD34D 100%);
+      --card-bg: #ffffff;
+      --primary: #3B82F6;
+      --primary-hover: #2563eb;
+      --secondary: #FCD34D;
+      --secondary-hover: #f59e0b;
+      --border: #e5e7eb;
+      --text: #1f2937;
+      --muted: #6B7280;
+      --radius: 12px;
+      --input-bg: #f9fafb;
+      --input-focus: #ffffff;
+      --shadow: 0 10px 25px -3px rgba(59, 130, 246, 0.1), 0 4px 6px -2px rgba(59, 130, 246, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(59, 130, 246, 0.1), 0 10px 10px -5px rgba(59, 130, 246, 0.04);
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
     }
     body {
       margin: 0;
@@ -27,127 +30,235 @@
       justify-content: center;
       min-height: 100vh;
       color: var(--text);
-      transition: background 0.4s;
+      transition: all 0.3s ease;
+      animation: fadeInBody 0.8s ease-out;
     }
     .container {
       width: 100%;
       max-width: 480px;
       padding: 20px;
+      animation: slideInUp 0.6s ease-out;
     }
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 36px 28px;
-      animation: fadeIn 0.5s;
+      padding: 40px 32px;
+      animation: slideInUp 0.8s ease-out;
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
     .card::before {
       content: '';
       position: absolute;
-      top: -60px; left: -60px;
-      width: 120px; height: 120px;
-      background: radial-gradient(circle, #ff9800 40%, transparent 70%);
-      opacity: 0.18;
+      top: -50px; left: -50px;
+      width: 100px; height: 100px;
+      background: radial-gradient(circle, #3B82F6 40%, transparent 70%);
+      opacity: 0.1;
       z-index: 0;
       pointer-events: none;
+      animation: float 6s ease-in-out infinite;
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; right: -30px;
+      width: 60px; height: 60px;
+      background: radial-gradient(circle, #FCD34D 40%, transparent 70%);
+      opacity: 0.1;
+      z-index: 0;
+      pointer-events: none;
+      animation: float 4s ease-in-out infinite reverse;
+    }
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideInUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
     }
     .header {
       text-align: center;
-      margin-bottom: 26px;
+      margin-bottom: 32px;
       position: relative;
       z-index: 1;
+      animation: slideInDown 0.7s ease-out;
     }
     .header h2 {
       margin: 0;
-      font-size: 2rem;
-      font-weight: 700;
+      font-size: 2.5rem;
+      font-weight: 800;
       color: var(--primary);
-      letter-spacing: 1px;
+      letter-spacing: -0.025em;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 12px;
+      animation: pulse 2s infinite;
     }
     .header p {
-      margin: 6px 0 0;
-      font-size: 0.95rem;
+      margin: 8px 0 0;
+      font-size: 1rem;
       color: var(--muted);
+      font-weight: 500;
+      animation: slideInDown 0.9s ease-out;
     }
     form {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
       position: relative;
       z-index: 1;
+      animation: slideInUp 1s ease-out;
     }
     input {
-      padding: 14px 16px;
+      padding: 16px 20px;
       border-radius: var(--radius);
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
       font-size: 1rem;
+      font-weight: 500;
       background: var(--input-bg);
-      transition: all 0.2s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       color: var(--text);
-      box-shadow: 0 2px 8px rgba(255, 140, 0, 0.07);
+      box-shadow: var(--shadow);
+      position: relative;
     }
     input:focus {
       outline: none;
       border-color: var(--primary);
       background: var(--input-focus);
-      box-shadow: 0 0 0 4px rgba(255, 140, 0, 0.13);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1), var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+    input::placeholder {
+      color: var(--muted);
+      transition: color 0.3s ease;
+    }
+    input:focus::placeholder {
+      color: var(--primary);
+      opacity: 0.7;
+    }
+    @keyframes slideInDown {
+      from { 
+        opacity: 0; 
+        transform: translateY(-20px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
     }
     button {
       background: var(--primary);
       color: #fff;
-      padding: 14px;
+      padding: 16px 24px;
       border: none;
       border-radius: var(--radius);
-      font-size: 1.08rem;
+      font-size: 1.1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-      box-shadow: 0 4px 14px rgba(255, 140, 0, 0.22);
-      letter-spacing: 0.5px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow);
+      letter-spacing: 0.025em;
       position: relative;
       z-index: 1;
+      overflow: hidden;
+      animation: slideInUp 1.2s ease-out;
+    }
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    button:hover::before {
+      left: 100%;
     }
     button:hover, button:focus {
       background: var(--primary-hover);
-      transform: translateY(-2px) scale(1.04);
-      box-shadow: 0 6px 18px rgba(255, 140, 0, 0.32);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: var(--shadow-lg);
     }
     .back-link {
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 24px;
       font-size: 1rem;
+      font-weight: 500;
       text-decoration: none;
       color: var(--muted);
-      transition: color 0.2s;
+      transition: all 0.3s ease;
       position: relative;
       z-index: 1;
+      animation: slideInUp 1.4s ease-out;
     }
     .back-link:hover {
       color: var(--primary);
       text-decoration: underline;
+      transform: translateY(-2px);
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(18px);}
       to { opacity: 1; transform: translateY(0);}
     }
-    @media (max-width: 600px) {
-      .card { padding: 18px 8px; }
-      .header h2 { font-size: 1.3rem; }
-      input, button { font-size: 0.98rem; }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container { 
+        max-width: 95%; 
+        padding: 16px;
+      }
+      .card { 
+        padding: 32px 24px; 
+      }
+      .header h2 { 
+        font-size: 2rem; 
+      }
+      input, button { 
+        font-size: 1rem; 
+        padding: 14px 18px;
+      }
     }
-    /* Interactive input animation */
-    input:focus::placeholder {
-      color: #ff9800;
-      opacity: 0.7;
-      transition: color 0.2s;
+    
+    @media (max-width: 480px) {
+      .container { 
+        padding: 12px;
+      }
+      .card { 
+        padding: 24px 20px; 
+      }
+      .header h2 { 
+        font-size: 1.8rem; 
+      }
+      input, button { 
+        font-size: 0.95rem; 
+        padding: 12px 16px;
+      }
+      form {
+        gap: 20px;
+      }
     }
+    
     /* Button ripple effect */
     button:active::after {
       content: '';
@@ -155,7 +266,7 @@
       left: 50%; top: 50%;
       width: 120%;
       height: 120%;
-      background: rgba(255, 152, 0, 0.18);
+      background: rgba(59, 130, 246, 0.2);
       border-radius: 50%;
       transform: translate(-50%, -50%);
       z-index: 0;
@@ -164,6 +275,18 @@
     @keyframes ripple {
       from { opacity: 0.7; }
       to { opacity: 0; }
+    }
+    
+    /* Focus styles for accessibility */
+    button:focus,
+    input:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+    
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
