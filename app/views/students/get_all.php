@@ -71,12 +71,13 @@
       margin: 0;
       font-size: 2.5rem;
       font-weight: 800;
-      color: var(--primary);
+      color: #ffffff;
       letter-spacing: -0.025em;
       display: flex;
       align-items: center;
       gap: 12px;
       animation: pulse 2s infinite;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     @keyframes slideInDown {
       from { 
@@ -347,14 +348,21 @@
       position: relative;
       z-index: 1;
       animation: slideInUp 1s ease-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
     }
     
     /* Pagination Styling */
     .pagination-container a,
     .pagination-container span {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 12px 16px;
-      margin: 0 4px;
+      margin: 0 2px;
       background: var(--card-bg);
       color: var(--primary);
       text-decoration: none;
@@ -366,6 +374,8 @@
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
+      min-width: 44px;
+      height: 44px;
     }
     
     .pagination-container a:hover {
