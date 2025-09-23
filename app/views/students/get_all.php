@@ -348,6 +348,69 @@
       z-index: 1;
       animation: slideInUp 1s ease-out;
     }
+    
+    /* Pagination Styling */
+    .pagination-container a,
+    .pagination-container span {
+      display: inline-block;
+      padding: 12px 16px;
+      margin: 0 4px;
+      background: var(--card-bg);
+      color: var(--primary);
+      text-decoration: none;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .pagination-container a:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .pagination-container a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .pagination-container a:hover::before {
+      left: 100%;
+    }
+    
+    .pagination-container .current,
+    .pagination-container span {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      cursor: default;
+    }
+    
+    .pagination-container .disabled {
+      background: var(--muted);
+      color: #fff;
+      border-color: var(--muted);
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    
+    .pagination-container .disabled:hover {
+      transform: none;
+      box-shadow: var(--shadow);
+    }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(18px);}
       to { opacity: 1; transform: translateY(0);}
