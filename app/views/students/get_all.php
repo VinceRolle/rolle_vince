@@ -566,12 +566,12 @@
             <td><?=$s['first_name'];?></td>
             <td><?=$s['last_name'];?></td>
             <td><?=$s['email'];?></td>
-            <td class="actions">
+          <td class="actions">
               <a href="<?= base_url().'students/update/'.$s['id'] ?>" class="btn btn-warning">Edit</a>
               <a href="<?= base_url().'students/delete/'.$s['id'] ?>" class="btn btn-danger" onclick="return confirm('Delete student?')">Delete</a>
-            </td>
-          </tr>
-          <?php endforeach; ?>
+          </td>
+        </tr>
+        <?php endforeach; ?>
         <?php else: ?>
           <tr>
             <td colspan="5" style="text-align: center; padding: 40px; color: var(--muted);">
