@@ -36,7 +36,7 @@ class StudentsController extends Controller {
         $this->call->view('students/get_all', $data);
     }
      function create() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
             $data = [
                 'last_name'  => $_POST['last_name'],
                 'first_name' => $_POST['first_name'],
