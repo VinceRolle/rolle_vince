@@ -176,16 +176,17 @@
       border-radius: 0;
     }
     th {
-      background: linear-gradient(90deg, #232946 0%, #2c5364 100%);
+      background: linear-gradient(90deg, #26334d 0%, #2c5364 100%);
       color: #fff;
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       border: none;
-      text-shadow: 0 1px 8px #23294699;
+      text-shadow: 0 2px 8px #000a, 0 1px 0 #26334d;
       position: relative;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
+      opacity: 1;
     }
     tr {
       transition: background 0.18s;

@@ -4,22 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit Student</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     :root {
-      --bg: linear-gradient(135deg, #3B82F6 0%, #FCD34D 100%);
-      --card-bg: #ffffff;
-      --primary: #3B82F6;
-      --primary-hover: #2563eb;
-      --secondary: #FCD34D;
-      --secondary-hover: #f59e0b;
-      --border: #e5e7eb;
-      --text: #1f2937;
+      --bg: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+      --card-bg: linear-gradient(135deg, #181c2f 60%, #2c5364 100%);
+      --primary: #00ffe7;
+      --primary-hover: #6c4ee6;
+      --border: #00ffe7cc;
+      --text: #00ffe7;
       --muted: #6B7280;
       --radius: 12px;
-      --input-bg: #f9fafb;
-      --input-focus: #ffffff;
-      --shadow: 0 10px 25px -3px rgba(59, 130, 246, 0.1), 0 4px 6px -2px rgba(59, 130, 246, 0.05);
-      --shadow-lg: 0 20px 25px -5px rgba(59, 130, 246, 0.1), 0 10px 10px -5px rgba(59, 130, 246, 0.04);
+      --input-bg: rgba(255,255,255,0.10);
+      --input-focus: #232946;
+      --shadow: 0 4px 32px 0 #00ffe799;
+      --shadow-lg: 0 8px 32px 0 #00ffe799;
       font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
     }
     body {
@@ -41,7 +40,7 @@
     }
     .card {
       background: var(--card-bg);
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 40px 32px;
@@ -108,6 +107,7 @@
       justify-content: center;
       gap: 12px;
       animation: pulse 2s infinite;
+      text-shadow: 0 2px 12px #00ffe799, 0 0px 8px #6c4ee6cc;
     }
     .header p {
       margin: 8px 0 0;
@@ -124,8 +124,21 @@
       z-index: 1;
       animation: slideInUp 1s ease-out;
     }
+    .input-icon {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .input-icon i {
+      position: absolute;
+      left: 16px;
+      color: #00ffe7;
+      font-size: 1.1em;
+      pointer-events: none;
+      opacity: 0.8;
+    }
     input {
-      padding: 16px 20px;
+      padding: 16px 20px 16px 44px;
       border-radius: var(--radius);
       border: 2px solid var(--border);
       font-size: 1rem;
@@ -166,9 +179,9 @@
       50% { transform: scale(1.02); }
     }
     button {
-      background: var(--primary);
-      color: #fff;
-      padding: 16px 24px;
+      background: linear-gradient(90deg, #00ffe7 0%, #6c4ee6 100%);
+      color: #181c2f;
+      padding: 16px 24px 16px 44px;
       border: none;
       border-radius: var(--radius);
       font-size: 1.1rem;
@@ -181,6 +194,17 @@
       z-index: 1;
       overflow: hidden;
       animation: slideInUp 1.2s ease-out;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+    }
+    button i {
+      position: absolute;
+      left: 18px;
+      font-size: 1.2em;
+      color: #6c4ee6;
+      opacity: 0.9;
     }
     button::before {
       content: '';
@@ -297,10 +321,10 @@
         <h2>Edit Student</h2>
       </div>
       <form method="POST">
-        <input type="text" name="first_name" value="<?= $student['first_name'] ?>" required>
-        <input type="text" name="last_name" value="<?= $student['last_name'] ?>" required>
-        <input type="email" name="email" value="<?= $student['email'] ?>" required>
-        <button type="submit">Update Student</button>
+        <div class="input-icon"><i class="fa fa-user"></i><input type="text" name="first_name" value="<?= $student['first_name'] ?>" required></div>
+        <div class="input-icon"><i class="fa fa-user-astronaut"></i><input type="text" name="last_name" value="<?= $student['last_name'] ?>" required></div>
+        <div class="input-icon"><i class="fa fa-envelope"></i><input type="email" name="email" value="<?= $student['email'] ?>" required></div>
+        <button type="submit"><i class="fa fa-floppy-disk"></i>Update Student</button>
       </form>
       <a class="back-link" href="<?= site_url().'students' ?>">Back to Students</a>
     </div>
