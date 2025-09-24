@@ -45,7 +45,7 @@ class StudentsController extends Controller {
             $this->StudentsModel->insert($data);
             redirect('students');
         }
-        $this->call->view('students/create');
+        $this->call->view('create');
     }
     function update($id) {
         $student = $this->StudentsModel->find($id);
@@ -58,7 +58,7 @@ class StudentsController extends Controller {
             $this->StudentsModel->update($id, $data);
             redirect('students');
         }
-        $this->call->view('students/update', ['student' => $student]);
+        $this->call->view('update', ['student' => $student]);
     }
     function delete($id) {
          $this->StudentsModel->delete($id);
