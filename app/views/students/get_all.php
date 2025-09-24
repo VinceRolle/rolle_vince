@@ -162,21 +162,30 @@
     }
     th, td {
       padding: 18px 22px;
-      border-bottom: 2px solid #00ffe7cc;
+      border-bottom: none;
       text-align: left;
       font-size: 1.08rem;
       position: relative;
-      color: #00ffe7;
       background: transparent;
     }
+    td {
+      background: rgba(255,255,255,0.92);
+      color: #232946;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      border-bottom: 1px solid #e0e0e0;
+      border-radius: 0;
+    }
     th {
-      background: linear-gradient(90deg, #00ffe7 0%, #6c4ee6 100%);
-      color: #181c2f;
+      background: linear-gradient(90deg, #232946 0%, #2c5364 100%);
+      color: #fff;
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       border: none;
-      text-shadow: 0 1px 8px #00ffe799;
+      text-shadow: 0 1px 8px #23294699;
+      position: relative;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
     }
     tr {
       transition: background 0.18s;
