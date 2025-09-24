@@ -538,11 +538,11 @@
       <table>
         <thead>
         <tr>
-          <th>ID</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Actions</th>
+          <th><i class="fa fa-hashtag" title="ID"></i> ID</th>
+          <th><i class="fa fa-user" title="First Name"></i> First Name</th>
+          <th><i class="fa fa-user-astronaut" title="Last Name"></i> Last Name</th>
+          <th><i class="fa fa-envelope" title="Email"></i> Email</th>
+          <th><i class="fa fa-gears" title="Actions"></i> Actions</th>
         </tr>
         </thead>
         <tbody>
