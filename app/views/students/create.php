@@ -295,7 +295,7 @@
         <input type="email" name="email" placeholder="Email" required>
         <button type="submit">Save Student</button>
       </form>
-      <a class="back-link" href="<?= base_url() ?>students">Back to Students</a>
+      <a class="back-link" href="<?= site_url() ?>students">Back to Students</a>
     </div>
   </div>
 </body>
