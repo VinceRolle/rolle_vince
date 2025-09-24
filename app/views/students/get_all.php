@@ -206,8 +206,8 @@
             <td><?=$s['last_name'];?></td>
             <td><?=$s['email'];?></td>
             <td class="actions">
-              <a href="<?= base_url().'students/update/'.$s['id'] ?>" class="btn btn-warning">Edit</a>
-              <a href="<?= base_url().'students/delete/'.$s['id'] ?>" class="btn btn-danger" onclick="return confirm('Delete student?')">Delete</a>
+              <a href="<?= site_url().'students/update/'.$s['id'] ?>" class="btn btn-warning">Edit</a>
+              <a href="<?= site_url().'students/delete/'.$s['id'] ?>" class="btn btn-danger" onclick="return confirm('Delete student?')">Delete</a>
             </td>
           </tr>
           <?php endforeach; ?>
