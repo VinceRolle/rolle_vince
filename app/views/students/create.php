@@ -118,6 +118,10 @@
       animation: slideInUp 1s ease-out;
       align-items: center;
     }
+    .input-icon, input, button {
+      width: 100%;
+      max-width: 350px;
+    }
     .input-icon {
       position: relative;
       display: flex;
