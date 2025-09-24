@@ -18,7 +18,7 @@ class StudentsController extends Controller {
             $q = trim($this->io->get('q'));
         }
 
-        $records_per_page = 10;
+        $records_per_page = 5;
 
         $all = $this->StudentsModel->page($q, $records_per_page, $page);
         $data['all'] = $all['records'];
