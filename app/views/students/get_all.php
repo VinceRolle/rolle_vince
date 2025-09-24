@@ -98,7 +98,7 @@
     .pagination-container {
       margin-top: 24px;
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       align-items: center;
     }
     .pagination-container ul {
