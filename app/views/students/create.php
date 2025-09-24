@@ -116,7 +116,7 @@
       position: relative;
       z-index: 1;
       animation: slideInUp 1s ease-out;
-      justify-content: center;
+      align-items: center;
     }
     .input-icon {
       position: relative;
