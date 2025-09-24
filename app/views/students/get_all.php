@@ -343,7 +343,7 @@
     .container {
       max-width: 1100px;
       margin: 40px auto;
-      background: #fff;
+  background: linear-gradient(135deg, #181c2f 60%, #2c5364 100%);
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.07);
       padding: 32px 32px 24px 32px;
@@ -397,7 +397,7 @@
       overflow-x: auto;
       border-radius: 8px;
       border: 1px solid #e0e0e0;
-      background: #fff;
+  background: linear-gradient(135deg, #181c2f 60%, #2c5364 100%);
       box-shadow: 0 1px 3px rgba(0,0,0,0.03);
     }
     table {
@@ -412,7 +412,7 @@
       font-size: 1rem;
     }
     th {
-      background: #f3f4f6;
+  background: linear-gradient(90deg, #232946 0%, #2c5364 100%);
       color: #555;
       font-weight: 600;
       text-transform: none;
@@ -450,7 +450,7 @@
         margin-bottom: 1rem;
         border-radius: 8px;
         box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-        background: #fff;
+  background: linear-gradient(135deg, #181c2f 60%, #2c5364 100%);
       }
       td {
         border: none;
