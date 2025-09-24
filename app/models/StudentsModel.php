@@ -57,5 +57,10 @@ class StudentsModel extends Model {
             return $data;
         }
     }
+
+    public function update_data($id, $data)
+    {
+        return $this->db->table($this->table)->where($this->primary_key, $id)->update($data);
+    }
     
 }

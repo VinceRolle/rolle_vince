@@ -47,19 +47,33 @@ class StudentsController extends Controller {
         }
         $this->call->view('students/create');
     }
-    function update($id) {
+
+    public function edit($id)
+    {
         $student = $this->StudentsModel->find($id);
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = [
-                'last_name'  => $_POST['last_name'],
-                'first_name' => $_POST['first_name'],
-                'email'      => $_POST['email']
-            ];
-            $this->StudentsModel->update($id, $data);
-            redirect('students');
+
+        if (!$student) {
+            echo "Student not found!";
+            return;
         }
+
         $this->call->view('students/update', ['student' => $student]);
     }
+
+    public function update($id)
+    {
+        $data = [
+            'last_name'  => $_POST['last_name'],
+            'first_name' => $_POST['first_name'],
+            'email'      => $_POST['email']
+        ];
+
+        $this->StudentsModel->update($id, $data);
+
+        header("Location: /get-all");
+        exit;
+    }
+
     function delete($id) {
          $this->StudentsModel->delete($id);
          redirect('students');
