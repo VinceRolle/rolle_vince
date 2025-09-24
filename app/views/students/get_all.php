@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Students List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
@@ -95,6 +96,51 @@
       display: flex;
       gap: 6px;
     }
+    .actions a.btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.98rem;
+      padding: 7px 14px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 3px rgba(25, 118, 210, 0.07);
+    }
+    .actions a.btn i {
+      font-size: 1.1em;
+    }
+    @media (max-width: 700px) {
+      .container {
+        padding: 10px;
+      }
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        display: none;
+      }
+      tr {
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        background: #fff;
+      }
+      td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        min-height: 40px;
+        font-size: 0.98rem;
+      }
+      td:before {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: 600;
+        color: #1976d2;
+        content: attr(data-label);
+      }
+    }
     .pagination-container {
       margin-top: 24px;
       display: flex;
@@ -180,8 +226,8 @@
             <td><?=$s['last_name'];?></td>
             <td><?=$s['email'];?></td>
             <td class="actions">
-              <a href="<?= site_url().'students/update/'.$s['id'] ?>" class="btn btn-warning">Edit</a>
-              <a href="<?= site_url().'students/delete/'.$s['id'] ?>" class="btn btn-danger" onclick="return confirm('Delete student?')">Delete</a>
+              <a href="<?= site_url().'students/update/'.$s['id'] ?>" class="btn btn-warning" title="Edit"><i class="fa fa-pen-to-square"></i> <span class="d-none d-md-inline">Edit</span></a>
+              <a href="<?= site_url().'students/delete/'.$s['id'] ?>" class="btn btn-danger" title="Delete" onclick="return confirm('Delete student?')"><i class="fa fa-trash"></i> <span class="d-none d-md-inline">Delete</span></a>
             </td>
           </tr>
           <?php endforeach; ?>
