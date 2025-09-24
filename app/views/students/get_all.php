@@ -171,7 +171,7 @@
   <div class="container">
     <div class="header">
       <h2>Students List</h2>
-      <a class="btn btn-success" href="<?= base_url().'students/create' ?>">Add Student</a>
+      <a class="btn btn-success" href="<?= site_url('students/create') ?>">Add Student</a>
     </div>
     
     <!-- Search Form -->
