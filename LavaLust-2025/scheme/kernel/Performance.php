@@ -34,30 +34,65 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
  * @license https://opensource.org/licenses/MIT MIT License
  */
 
-/*
-| -------------------------------------------------------------------
-| URI ROUTING
-| -------------------------------------------------------------------
-| Here is where you can register web routes for your application.
-|
-|
-*/
+/**
+* ------------------------------------------------------
+*  Class Performance
+* ------------------------------------------------------
+ */
+class Performance {
+	public function __construct() {
 
-//$router->get('/', 'Welcome::index');
-$router->match('/', 'StudentsController::create', ['GET', 'POST']);
+    }
+	/**
+	 * Holds the mark points
+	 *
+	 * @var array
+	 */
+	public $tags = array();
 
-/* Auth Routes */
-$router->get('/auth/login', 'AuthController::login');
-$router->post('/auth/login', 'AuthController::login');
-$router->get('/auth/logout', 'AuthController::logout');
-$router->get('/auth/register', 'AuthController::register');
-$router->post('/auth/register', 'AuthController::register');
+	/**
+	 * Start Marking Points
+	 *
+	 * @param  string $point marker
+	 * @return void
+	 */
+	public function start($point)
+	{
+		$this->tags[$point]['start'] = microtime(true);
+	}
 
-/* Students Routes */
-$router->match('/students/get-all', 'StudentsController::get_all', ['GET', 'POST']);
-$router->match('/students/update/{id}', 'StudentsController::update', ['GET', 'POST']);
-$router->get('/students/delete/{id}', 'StudentsController::delete');
-$router->get('/soft-delete/{id}', 'StudentsController::soft_delete');
-$router->get('/students', 'StudentsController::get_all');
-$router->match('/students/create', 'StudentsController::create', ['GET', 'POST']);
+	/**
+	 * End Marking Point
+	 *
+	 * @param string $point
+	 * @return void
+	 */
+	public function stop($point) {
+		$this->tags[$point]['stop'] = microtime(true);
+	}
 
+	/**
+	 * Elapsed Time
+	 *
+	 * @param  string  $point    marker
+	 * @param  integer $decimals
+	 * @return float
+	 */
+	public function elapsed_time($point, $decimals = 4)
+	{
+		$split_time = $this->tags[$point]['stop'] - $this->tags[$point]['start'];
+		return number_format($split_time, $decimals);
+	}
+
+	/**
+	 * Memory Usage
+	 *
+	 * @return float
+	 */
+	public function memory_usage()
+    {
+        return round(memory_get_usage() / 1024 / 1024, 2).'MB';
+    }
+
+}
+?>

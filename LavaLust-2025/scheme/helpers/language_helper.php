@@ -34,30 +34,39 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
  * @license https://opensource.org/licenses/MIT MIT License
  */
 
-/*
-| -------------------------------------------------------------------
-| URI ROUTING
-| -------------------------------------------------------------------
-| Here is where you can register web routes for your application.
-|
-|
-*/
+if ( ! function_exists('lang'))
+{
+	/**
+	 * Use to translate text on you app in different languages
+	 *
+	 * @param string $key
+	 * @param array $params
+	 * @param boolean $escape
+	 * @return string
+	 */
+	function lang($key, $params = array(), $escape = FALSE)
+	{
+		$translated = lava_instance()->lang->translate($key, $params);
 
-//$router->get('/', 'Welcome::index');
-$router->match('/', 'StudentsController::create', ['GET', 'POST']);
+		if($escape == TRUE)
+			return html_escape($translated);
+		else
+			return $translated;
+	}
+}
 
-/* Auth Routes */
-$router->get('/auth/login', 'AuthController::login');
-$router->post('/auth/login', 'AuthController::login');
-$router->get('/auth/logout', 'AuthController::logout');
-$router->get('/auth/register', 'AuthController::register');
-$router->post('/auth/register', 'AuthController::register');
+if ( ! function_exists('language'))
+{
+    /**
+     * Use to select the Language to use
+     *
+     * @param  string $lang
+     * @return object
+     */
+	function language($lang)
+	{
+		return lava_instance()->lang->language($lang);
+	}
+}
 
-/* Students Routes */
-$router->match('/students/get-all', 'StudentsController::get_all', ['GET', 'POST']);
-$router->match('/students/update/{id}', 'StudentsController::update', ['GET', 'POST']);
-$router->get('/students/delete/{id}', 'StudentsController::delete');
-$router->get('/soft-delete/{id}', 'StudentsController::soft_delete');
-$router->get('/students', 'StudentsController::get_all');
-$router->match('/students/create', 'StudentsController::create', ['GET', 'POST']);
-
+?>

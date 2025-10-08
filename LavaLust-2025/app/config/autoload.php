@@ -70,9 +70,9 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 | Prototype:
 |
-| 	$autoload['libraries'] = array('database', 'email', 'session');
+|	$autoload['libraries'] = array('database', 'email', 'session');
 */
-$autoload['libraries'] = array('database', 'session', 'form_validation', 'pagination');
+$autoload['libraries'] = array('database');
 
 /*
 | -------------------------------------------------------------------
@@ -80,7 +80,7 @@ $autoload['libraries'] = array('database', 'session', 'form_validation', 'pagina
 | -------------------------------------------------------------------
 | Prototype:
 |
-| 	$autoload['helpers'] = array('url', 'file');
+|	$autoload['helpers'] = array('url', 'file');
 */
 $autoload['helpers'] = array('url', 'file');
 
@@ -90,7 +90,7 @@ $autoload['helpers'] = array('url', 'file');
 | -------------------------------------------------------------------
 | Prototype:
 |
-| 	$autoload['models'] = array('model1_model', 'model2_model')
+|	$autoload['models'] = array('model1_model', 'model2_model')
 */
 $autoload['models'] = array('StudentsModel');
 
@@ -100,7 +100,7 @@ $autoload['models'] = array('StudentsModel');
 | -------------------------------------------------------------------
 | Prototype:
 |
-| 	$autoload['configs'] = array('config1', 'config2');
+|	$autoload['configs'] = array('config1', 'config2');
 |
 | NOTE: This item is intended for use ONLY if you have created custom
 | config files.  Otherwise, leave it blank.

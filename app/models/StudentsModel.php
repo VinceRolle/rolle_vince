@@ -57,5 +57,20 @@ class StudentsModel extends Model {
             return $data;
         }
     }
-    
+
+    public function find_by_email($email)
+    {
+        return $this->db->table($this->table)->where('email', $email)->get();
+    }
+
+    public function create_account(array $data)
+    {
+        $payload = [
+            'first_name' => $data['first_name'] ?? '',
+            'last_name'  => $data['last_name'] ?? '',
+            'email'      => $data['email'] ?? '',
+            'password'   => password_hash($data['password'] ?? '', PASSWORD_DEFAULT),
+        ];
+        return $this->db->table($this->table)->insert($payload);
+    }
 }

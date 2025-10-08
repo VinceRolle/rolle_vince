@@ -36,28 +36,38 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
-| URI ROUTING
+| DATABASE CONNECTIVITY SETTINGS
 | -------------------------------------------------------------------
-| Here is where you can register web routes for your application.
+| This file will contain the settings needed to access your database.
+| -------------------------------------------------------------------
+| EXPLANATION OF VARIABLES
+| -------------------------------------------------------------------
 |
-|
+|	['driver'] 		The driver of your database server.
+|	['hostname'] 	The hostname of your database server.
+|	['port'] 		The port used by your database server.
+|	['username'] 	The username used to connect to the database
+|	['password'] 	The password used to connect to the database
+|	['database'] 	The name of the database you want to connect to
+|	['charset']		The default character set
+|   ['dbprefix']    You can add an optional prefix, which will be added
+|				    to the table name when using the  Query Builder class
+|   You can create new instance of the database by adding new element of
+|   $database variable.
+|   Example: $database['another_example'] = array('key' => 'value')
 */
 
-//$router->get('/', 'Welcome::index');
-$router->match('/', 'StudentsController::create', ['GET', 'POST']);
+$database['main'] = array(
+    'driver'	=> 'mysql',
+    'hostname'	=> 'localhost',
+    'port'		=> '3306',
+    'username'	=> 'root',
+    'password'	=> '',
+    'database'	=> 'users_db',
+    'charset'	=> 'utf8mb4',
+    'dbprefix'	=> '',
+    // Optional for SQLite
+    'path'      => ''
+);
 
-/* Auth Routes */
-$router->get('/auth/login', 'AuthController::login');
-$router->post('/auth/login', 'AuthController::login');
-$router->get('/auth/logout', 'AuthController::logout');
-$router->get('/auth/register', 'AuthController::register');
-$router->post('/auth/register', 'AuthController::register');
-
-/* Students Routes */
-$router->match('/students/get-all', 'StudentsController::get_all', ['GET', 'POST']);
-$router->match('/students/update/{id}', 'StudentsController::update', ['GET', 'POST']);
-$router->get('/students/delete/{id}', 'StudentsController::delete');
-$router->get('/soft-delete/{id}', 'StudentsController::soft_delete');
-$router->get('/students', 'StudentsController::get_all');
-$router->match('/students/create', 'StudentsController::create', ['GET', 'POST']);
-
+?>

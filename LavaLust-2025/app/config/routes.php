@@ -1,5 +1,5 @@
 <?php
-defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
+defined('PREVENT_DIRECT_ACCESS') or exit('No direct script access allowed');
 /**
  * ------------------------------------------------------------------
  * LavaLust - an opensource lightweight PHP MVC Framework
@@ -43,21 +43,36 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 
-//$router->get('/', 'Welcome::index');
-$router->match('/', 'StudentsController::create', ['GET', 'POST']);
+// Default route → students list
+$router->get('/', 'StudentsController::get_all');
 
-/* Auth Routes */
-$router->get('/auth/login', 'AuthController::login');
-$router->post('/auth/login', 'AuthController::login');
-$router->get('/auth/logout', 'AuthController::logout');
-$router->get('/auth/register', 'AuthController::register');
-$router->post('/auth/register', 'AuthController::register');
+/* =====================
+   AUTH ROUTES
+   ===================== */
+$router->get('/auth/login', 'AuthController::login');        // Show login form
+$router->post('/auth/login', 'AuthController::login');       // Handle login
+$router->get('/auth/logout', 'AuthController::logout');      // Logout user
 
-/* Students Routes */
-$router->match('/students/get-all', 'StudentsController::get_all', ['GET', 'POST']);
-$router->match('/students/update/{id}', 'StudentsController::update', ['GET', 'POST']);
-$router->get('/students/delete/{id}', 'StudentsController::delete');
-$router->get('/soft-delete/{id}', 'StudentsController::soft_delete');
+$router->get('/auth/register', 'AuthController::register');  // Show register form
+$router->post('/auth/register', 'AuthController::register'); // Handle register
+
+/* =====================
+   STUDENTS ROUTES
+   ===================== */
+// List & pagination
 $router->get('/students', 'StudentsController::get_all');
-$router->match('/students/create', 'StudentsController::create', ['GET', 'POST']);
+$router->get('/students/get-all', 'StudentsController::get_all');
+$router->get('/students/get-all/{page}', 'StudentsController::get_all');
 
+// Create
+$router->get('/students/create', 'StudentsController::create');
+$router->post('/students/create', 'StudentsController::create');
+
+// Update
+$router->get('/students/update/{id}', 'StudentsController::update');
+$router->post('/students/update/{id}', 'StudentsController::update');
+
+// Delete / Restore
+$router->get('/students/delete/{id}', 'StudentsController::delete');
+$router->get('/students/restore/{id}', 'StudentsController::restore');
+$router->get('/students/hard_delete/{id}', 'StudentsController::hard_delete');

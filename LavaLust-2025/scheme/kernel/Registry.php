@@ -6,9 +6,9 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
  * ------------------------------------------------------------------
  *
  * MIT License
- *
+ * 
  * Copyright (c) 2020 Ronald M. Marasigan
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -34,30 +34,80 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
  * @license https://opensource.org/licenses/MIT MIT License
  */
 
-/*
-| -------------------------------------------------------------------
-| URI ROUTING
-| -------------------------------------------------------------------
-| Here is where you can register web routes for your application.
-|
-|
-*/
+/**
+* ------------------------------------------------------
+*  Class Performance
+* ------------------------------------------------------
+ */
+class Registry
+{
+    /**
+     * Class name arrays
+     *
+     * @var array
+     */
+	private $_classes = array();
 
-//$router->get('/', 'Welcome::index');
-$router->match('/', 'StudentsController::create', ['GET', 'POST']);
+    /**
+     * Instance
+     *
+     * @var object
+     */
+	private static $_instance;
+	
+    /**
+     * Get Instance of Registry
+     */
+    public static function instance()
+    {
+    	if(!isset(self::$_instance))
+        {
+            self::$_instance = new self();
+        }
+        return self::$_instance;
+    }
 
-/* Auth Routes */
-$router->get('/auth/login', 'AuthController::login');
-$router->post('/auth/login', 'AuthController::login');
-$router->get('/auth/logout', 'AuthController::logout');
-$router->get('/auth/register', 'AuthController::register');
-$router->post('/auth/register', 'AuthController::register');
+    /**
+     * Get
+     * @param string $key
+     * @return mixed
+     */
+    protected function get($key)
+    {
+    	
+        if(isset($this->_classes[$key]))
+        {	
+            return $this->_classes[$key];
+        }
+        return NULL;
+    }
 
-/* Students Routes */
-$router->match('/students/get-all', 'StudentsController::get_all', ['GET', 'POST']);
-$router->match('/students/update/{id}', 'StudentsController::update', ['GET', 'POST']);
-$router->get('/students/delete/{id}', 'StudentsController::delete');
-$router->get('/soft-delete/{id}', 'StudentsController::soft_delete');
-$router->get('/students', 'StudentsController::get_all');
-$router->match('/students/create', 'StudentsController::create', ['GET', 'POST']);
+    /**
+     * @param string $key
+     * @param object $object
+     * @return void
+     */
+    protected function set($key, $object)
+    {
+        $this->_classes[$key] = $object;
+    }
 
+    /**
+     * @param string $key
+     * @return object
+     */
+    static function get_object($key)
+    {
+		return self::instance()->get($key);
+	}
+
+    /**
+     * @param string $key
+     * @param object $object
+     * @return object
+     */
+	static function store_object($key, $object)
+	{
+		return self::instance()->set($key, $object);
+	}
+}

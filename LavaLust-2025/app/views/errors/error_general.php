@@ -6,9 +6,9 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
  * ------------------------------------------------------------------
  *
  * MIT License
- *
+ * 
  * Copyright (c) 2020 Ronald M. Marasigan
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -29,35 +29,66 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
  *
  * @package LavaLust
  * @author Ronald M. Marasigan <ronald.marasigan@yahoo.com>
+ * @copyright Copyright 2020 (https://techron.info)
  * @since Version 1
- * @link https://github.com/ronmarasigan/LavaLust
+ * @link https://lavalust.com
  * @license https://opensource.org/licenses/MIT MIT License
  */
 
-/*
-| -------------------------------------------------------------------
-| URI ROUTING
-| -------------------------------------------------------------------
-| Here is where you can register web routes for your application.
-|
-|
-*/
+?>
 
-//$router->get('/', 'Welcome::index');
-$router->match('/', 'StudentsController::create', ['GET', 'POST']);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Error Encountered</title>
+	<style type="text/css">
 
-/* Auth Routes */
-$router->get('/auth/login', 'AuthController::login');
-$router->post('/auth/login', 'AuthController::login');
-$router->get('/auth/logout', 'AuthController::logout');
-$router->get('/auth/register', 'AuthController::register');
-$router->post('/auth/register', 'AuthController::register');
+	*{
+	    transition: all 0.6s;
+	}
 
-/* Students Routes */
-$router->match('/students/get-all', 'StudentsController::get_all', ['GET', 'POST']);
-$router->match('/students/update/{id}', 'StudentsController::update', ['GET', 'POST']);
-$router->get('/students/delete/{id}', 'StudentsController::delete');
-$router->get('/soft-delete/{id}', 'StudentsController::soft_delete');
-$router->get('/students', 'StudentsController::get_all');
-$router->match('/students/create', 'StudentsController::create', ['GET', 'POST']);
+	html {
+	    height: 100%;
+	}
 
+	body{
+	    font-family: 'Lato', sans-serif;
+	    color: #888;
+	    margin: 0;
+	}
+
+	#main{
+	    display: table;
+	    width: 100%;
+	    height: 100vh;
+	    text-align: center;
+	}
+
+	.fof{
+		  display: table-cell;
+		  vertical-align: middle;
+	}
+
+	.fof h1{
+		  font-size: 50px;
+		  display: inline-block;
+		  padding-right: 12px;
+		  animation: type .5s alternate infinite;
+	}
+
+	@keyframes type{
+		  from{box-shadow: inset -3px 0px 0px #888;}
+		  to{box-shadow: inset -3px 0px 0px transparent;}
+	}
+	</style>
+</head>
+<body>
+	<div id="main">
+    	<div class="fof">
+	        <h1><?php echo $heading; ?></h1>
+	        <p><?php echo $message; ?></p>
+    	</div>
+	</div>
+</body>
+</html>

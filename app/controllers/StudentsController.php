@@ -6,6 +6,11 @@ class StudentsController extends Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->call->library('session');
+        if (!$this->session->userdata('logged_in')) {
+            redirect('auth/login');
+            return;
+        }
     }
     function get_all() {
         $page = 1;
@@ -18,7 +23,7 @@ class StudentsController extends Controller {
             $q = trim($this->io->get('q'));
         }
 
-        $records_per_page = 5;
+        $records_per_page = 10;
 
         $all = $this->StudentsModel->page($q, $records_per_page, $page);
         $data['all'] = $all['records'];
@@ -36,7 +41,7 @@ class StudentsController extends Controller {
         $this->call->view('students/get_all', $data);
     }
      function create() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
                 'last_name'  => $_POST['last_name'],
                 'first_name' => $_POST['first_name'],

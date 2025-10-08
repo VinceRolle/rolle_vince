@@ -34,30 +34,50 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
  * @license https://opensource.org/licenses/MIT MIT License
  */
 
-/*
-| -------------------------------------------------------------------
-| URI ROUTING
-| -------------------------------------------------------------------
-| Here is where you can register web routes for your application.
-|
-|
-*/
+if ( ! function_exists('set_cookie'))
+{
+	/**
+	 * Setting up cookie in your application
+	 *
+	 * @param string $name the cookie name
+	 * @param string $value the cookie value
+	 * @param array $options other cookie options
+	 * @return void
+	 */
+	function set_cookie($name, $value = '', $expiration = 0, $options = array())
+	{
+		lava_instance()->io->set_cookie($name, $value, $expiration, $options);
+	}
+}
 
-//$router->get('/', 'Welcome::index');
-$router->match('/', 'StudentsController::create', ['GET', 'POST']);
+if ( ! function_exists('get_cookie'))
+{
+	/**
+	 * Fetch an item from the COOKIE array
+	 *
+	 * @param  string  $name name of the cookie
+	 * @return mixed
+	 */
+	function get_cookie($name)
+	{
+		$prefix = isset($_COOKIE[$name]) ? '' : config_item('cookie_prefix');
+		return lava_instance()->io->cookie($prefix.$name);
+	}
+}
 
-/* Auth Routes */
-$router->get('/auth/login', 'AuthController::login');
-$router->post('/auth/login', 'AuthController::login');
-$router->get('/auth/logout', 'AuthController::logout');
-$router->get('/auth/register', 'AuthController::register');
-$router->post('/auth/register', 'AuthController::register');
-
-/* Students Routes */
-$router->match('/students/get-all', 'StudentsController::get_all', ['GET', 'POST']);
-$router->match('/students/update/{id}', 'StudentsController::update', ['GET', 'POST']);
-$router->get('/students/delete/{id}', 'StudentsController::delete');
-$router->get('/soft-delete/{id}', 'StudentsController::soft_delete');
-$router->get('/students', 'StudentsController::get_all');
-$router->match('/students/create', 'StudentsController::create', ['GET', 'POST']);
-
+if ( ! function_exists('delete_cookie'))
+{
+	/**
+	 * Delete a cookie
+	 *
+	 * @param  string $name
+	 * @param  string $domain the cookie domain
+	 * @param  string $path   the cookie path
+	 * @param  string $prefix the cookie prefix
+	 * @return void
+	 */
+	function delete_cookie($name, $domain = '', $path = '/', $prefix = '')
+	{
+		lava_instance()->io->set_cookie($name, '', '', array('domain' => $domain, 'path' => $path, 'prefix' => $prefix));
+	}
+}

@@ -34,30 +34,92 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
  * @license https://opensource.org/licenses/MIT MIT License
  */
 
-/*
-| -------------------------------------------------------------------
-| URI ROUTING
-| -------------------------------------------------------------------
-| Here is where you can register web routes for your application.
-|
-|
-*/
+/**
+* ------------------------------------------------------
+*  Class Controller
+* ------------------------------------------------------
+ */
+class Controller
+{
+	/**
+	 * Controller Instance
+	 *
+	 * @var object
+	 */
+	private static $instance;
+	/**
+	 * Load class
+	 *
+	 * @var object
+	 */
+	public $call;
 
-//$router->get('/', 'Welcome::index');
-$router->match('/', 'StudentsController::create', ['GET', 'POST']);
+	/**
+	 * Dynamic Properties using __set and __get
+	 *
+	 * @var array
+	 */
+	public $properties = [];
 
-/* Auth Routes */
-$router->get('/auth/login', 'AuthController::login');
-$router->post('/auth/login', 'AuthController::login');
-$router->get('/auth/logout', 'AuthController::logout');
-$router->get('/auth/register', 'AuthController::register');
-$router->post('/auth/register', 'AuthController::register');
+	/**
+	 * Set Dynamic Properties
+	 *
+	 * @param string $prop
+	 * @param string $val
+	 */
+	public function __set($prop, $val) {
+		$this->properties[$prop] = $val;
+	}
 
-/* Students Routes */
-$router->match('/students/get-all', 'StudentsController::get_all', ['GET', 'POST']);
-$router->match('/students/update/{id}', 'StudentsController::update', ['GET', 'POST']);
-$router->get('/students/delete/{id}', 'StudentsController::delete');
-$router->get('/soft-delete/{id}', 'StudentsController::soft_delete');
-$router->get('/students', 'StudentsController::get_all');
-$router->match('/students/create', 'StudentsController::create', ['GET', 'POST']);
+	/**
+	 * Get Dynamic Properties
+	 *
+	 * @param string $prop
+	 * @return void
+	 */
+	public function __get($prop) {
+		if (array_key_exists($prop, $this->properties)) {
+			return $this->properties[$prop];
+		} else {
+			throw new Exception("Property $prop does not exist");
+		}
+	}
 
+	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		$this->before_action();
+
+		self::$instance = $this;
+
+		foreach (loaded_class() as $var => $class)
+		{
+			$this->properties[$var] =& load_class($class);
+		}
+
+		$this->call =& load_class('invoker', 'kernel');
+		$this->call->initialize();
+	}
+
+	/**
+     * Called before the controller action.
+     * Used to perform logic that needs to happen before each controller action.
+     *
+     */
+    public function before_action(){}
+
+	/**
+	 * Instance of controller
+	 *
+	 * @return object
+	 */
+	public static function &instance()
+	{
+		return self::$instance;
+	}
+
+}
+
+?>
