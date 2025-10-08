@@ -3,114 +3,129 @@
 <head>
 	<title>Login</title>
 	<style>
-		:root {
-			--bg-start: #0f172a;
-			--bg-end: #1f2937;
-			--card-bg: #ffffff;
-			--text-main: #0f172a;
-			--text-muted: #6b7280;
-			--gold-500: #f59e0b;
-			--gold-600: #d97706;
-			--gold-700: #b45309;
-			--border: #e5e7eb;
-			--ring: rgba(245, 158, 11, 0.35);
-			--shadow: 0 10px 30px rgba(2, 6, 23, 0.25);
-		}
 		body {
-			font-family: "Segoe UI", Roboto, Inter, Arial, sans-serif;
-			background:
-				radial-gradient(1200px 600px at 10% 10%, rgba(245, 158, 11, 0.08), transparent 40%),
-				radial-gradient(1200px 600px at 80% 20%, rgba(234, 179, 8, 0.06), transparent 45%),
-				linear-gradient(135deg, var(--bg-start), var(--bg-end));
+			font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+			background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+			min-height: 100vh;
+			margin: 0;
+			padding: 0;
 			display: flex;
-			justify-content: center;
 			align-items: center;
-			height: 100vh;
-			padding: 20px;
+			justify-content: center;
 		}
 		.container {
-			background: var(--card-bg);
-			padding: 32px;
-			border-radius: 16px;
-			box-shadow: var(--shadow);
-			width: 360px;
-			border: 1px solid var(--border);
-			backdrop-filter: saturate(1.1);
+			width: 100%;
+			max-width: 400px;
+			padding: 20px;
+			background: rgba(20, 24, 50, 0.85);
+			border-radius: 24px;
+			box-shadow: 0 8px 32px 0 rgba(0,255,255,0.18), 0 0px 40px 0 #00ffe7cc;
+			backdrop-filter: blur(18px);
+			border: 2.5px solid #00ffe7cc;
+			position: relative;
+			overflow: hidden;
+		}
+		.container:before {
+			content: '';
+			position: absolute;
+			top: -60px; left: -60px;
+			width: 220px; height: 220px;
+			background: radial-gradient(circle, #00ffe7 0%, #6c4ee6 100%);
+			opacity: 0.18;
+			z-index: 0;
+			border-radius: 50%;
+			filter: blur(2px);
 		}
 		h2 {
 			text-align: center;
-			margin-bottom: 24px;
-			font-size: 24px;
-			line-height: 1.2;
-			background: linear-gradient(90deg, var(--gold-500), var(--gold-700));
+			margin: 0 0 32px 0;
+			font-size: 2.6rem;
+			font-weight: 900;
+			color: #00ffe7;
+			letter-spacing: -1.5px;
+			text-shadow: 0 2px 24px #00ffe799, 0 0px 8px #6c4ee6cc;
+			background: linear-gradient(90deg, #00ffe7 0%, #6c4ee6 100%);
 			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
 			background-clip: text;
-			color: transparent;
-			letter-spacing: 0.3px;
+			position: relative;
+			z-index: 1;
 		}
 		input[type="email"],
 		input[type="password"] {
 			width: 100%;
-			padding: 12px 14px;
-			margin: 8px 0 12px 0;
-			border: 1px solid var(--border);
+			padding: 12px 18px;
+			margin: 8px 0 16px 0;
+			border: 2px solid #00ffe7cc;
 			border-radius: 12px;
-			background: #ffffff;
-			color: var(--text-main);
-			transition: border-color 180ms ease, box-shadow 180ms ease, transform 120ms ease;
+			background: rgba(0,0,0,0.18);
+			color: #00ffe7;
+			font-size: 1.08rem;
+			font-weight: 500;
+			transition: border 0.2s, box-shadow 0.2s, color 0.2s;
+			box-shadow: 0 1px 8px #00ffe799;
 			outline: none;
+			position: relative;
+			z-index: 1;
 		}
-		.input-group { position: relative; }
 		input:focus {
-			border-color: var(--gold-500);
-			box-shadow: 0 0 0 4px var(--ring);
+			border: 2px solid #ff00c8;
+			outline: none;
+			box-shadow: 0 2px 12px #ff00c899;
+			color: #ff00c8;
 		}
 		button {
 			width: 100%;
-			padding: 12px 16px;
-			background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+			padding: 12px 28px;
+			background: linear-gradient(90deg, #00ffe7 0%, #6c4ee6 100%);
 			border: none;
 			border-radius: 12px;
-			color: #111827;
+			color: #181c2f;
 			font-weight: 700;
-			letter-spacing: 0.3px;
+			font-size: 1.08rem;
 			cursor: pointer;
-			box-shadow: 0 20px 20px rgba(245, 158, 11, 0.35);
-			transition: transform 120ms ease, box-shadow 100ms ease, filter 100ms ease;
+			box-shadow: 0 2px 12px 0 #00ffe799;
+			transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+			text-shadow: 0 1px 8px #00ffe799;
+			position: relative;
+			z-index: 1;
 		}
 		button:hover {
-			filter: brightness(0.98);
-			box-shadow: 0 10px 24px rgba(245, 158, 11, 0.45);
-			transform: translateY(-1px);
-			background: linear-gradient(135deg, var(--gold-600), var(--gold-700));
-			color: #111827;
+			background: linear-gradient(90deg, #6c4ee6 0%, #00ffe7 100%);
+			transform: translateY(-2px) scale(1.04);
+			box-shadow: 0 4px 24px 0 #00ffe799;
 		}
 		button:active {
 			transform: translateY(0);
-			box-shadow: 0 6px 16px rgba(245, 158, 11, 0.35);
+			box-shadow: 0 2px 12px 0 #00ffe799;
 		}
 		p {
 			text-align: center;
-			margin-top: 16px;
-			color: var(--text-muted);
+			margin-top: 20px;
+			color: #00ffe7;
+			position: relative;
+			z-index: 1;
 		}
 		p a {
-			color: var(--gold-600);
+			color: #ff00c8;
 			font-weight: 600;
 			text-decoration: none;
+			transition: color 0.2s;
 		}
 		p a:hover {
-			color: var(--gold-700);
+			color: #00ffe7;
 			text-decoration: underline;
 		}
 		.error {
-			color: #dc2626;
+			color: #ff00c8;
 			text-align: center;
-			margin-bottom: 12px;
-			background: #fee2e2;
-			border: 1px solid #fecaca;
-			border-radius: 10px;
-			padding: 8px 10px;
+			margin-bottom: 16px;
+			background: rgba(255, 0, 200, 0.1);
+			border: 2px solid #ff00c8;
+			border-radius: 12px;
+			padding: 12px 16px;
+			position: relative;
+			z-index: 1;
 		}
 	</style>
 </head>

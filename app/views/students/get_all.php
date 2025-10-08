@@ -529,7 +529,10 @@
   <div class="container">
     <div class="header">
       <h2>Students List</h2>
-      <a class="btn btn-success" href="<?= site_url('students/create') ?>">Add Student</a>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <a class="btn btn-success" href="<?= site_url('students/create') ?>">Add Student</a>
+        <a class="btn btn-danger" href="<?= site_url('auth/logout') ?>" style="background: linear-gradient(90deg, #ff00c8 0%, #ff5858 100%); color: #fff; text-shadow: 0 1px 8px #ff00c899;">🚪 Logout</a>
+      </div>
     </div>
     
     <!-- Search Form -->
