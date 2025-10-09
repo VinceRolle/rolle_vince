@@ -140,9 +140,9 @@
 		<?php endif; ?>
 
 		<form method="post" action="<?= site_url('auth/login') ?>">
-			<input type="email" name="email" placeholder="👨‍🎓 Email" required>
+			<input type="email" name="email" placeholder="Email" required>
 			<div class="input-group">
-				<input type="password" name="password" placeholder="🔐 Password" required>
+				<input type="password" name="password" placeholder="Password" required>
 			</div>
 			<button type="submit">Login</button>
 		</form>
