@@ -64,15 +64,14 @@
 		}
 		input[type="text"],
 		input[type="email"],
-		input[type="password"],
-		input[type="file"] {
+		input[type="password"] {
 			width: 100%;
 			padding: 12px 18px;
 			margin: 8px 0 16px 0;
 			border: 2px solid #00ffe7cc;
 			border-radius: 12px;
-			background: rgba(0,0,0,0.18);
-			color: #00ffe7;
+			background: rgba(255,255,255,0.95);
+			color: #181c2f;
 			font-size: 1.08rem;
 			font-weight: 500;
 			transition: border 0.2s, box-shadow 0.2s, color 0.2s;
@@ -80,9 +79,6 @@
 			outline: none;
 			position: relative;
 			z-index: 1;
-		}
-		input[type="file"] {
-			padding: 10px 18px;
 		}
 		input:focus {
 			border: 2px solid #ff00c8;
@@ -153,13 +149,11 @@
 			<p class="error"><?= htmlspecialchars($error) ?></p>
 		<?php endif; ?>
 
-		<form method="post" action="<?= site_url('auth/register') ?>" enctype="multipart/form-data">
+		<form method="post" action="<?= site_url('auth/register') ?>">
 			<input type="text" name="first_name" placeholder="First Name" required>
 			<input type="text" name="last_name" placeholder="Last Name" required>
 			<input type="email" name="email" placeholder="Email" required>
 			<input type="password" name="password" placeholder="Password" required>
-			<label>Profile Photo (optional):</label>
-			<input type="file" name="photo" accept="image/*">
 			<button type="submit">Register</button>
 		</form>
 

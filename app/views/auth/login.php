@@ -58,8 +58,8 @@
 			margin: 8px 0 16px 0;
 			border: 2px solid #00ffe7cc;
 			border-radius: 12px;
-			background: rgba(0,0,0,0.18);
-			color: #00ffe7;
+			background: rgba(255,255,255,0.95);
+			color: #181c2f;
 			font-size: 1.08rem;
 			font-weight: 500;
 			transition: border 0.2s, box-shadow 0.2s, color 0.2s;
