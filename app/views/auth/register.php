@@ -66,25 +66,27 @@
 		input[type="email"],
 		input[type="password"] {
 			width: 100%;
-			padding: 12px 18px;
-			margin: 8px 0 16px 0;
+			padding: 14px 18px;
+			margin: 12px 0 20px 0;
 			border: 2px solid #00ffe7cc;
 			border-radius: 12px;
-			background: rgba(255,255,255,0.95);
+			background: rgba(255,255,255,0.98);
 			color: #181c2f;
-			font-size: 1.08rem;
+			font-size: 1.1rem;
 			font-weight: 500;
-			transition: border 0.2s, box-shadow 0.2s, color 0.2s;
-			box-shadow: 0 1px 8px #00ffe799;
+			transition: all 0.3s ease;
+			box-shadow: 0 2px 12px rgba(0,255,231,0.3);
 			outline: none;
 			position: relative;
 			z-index: 1;
+			box-sizing: border-box;
 		}
 		input:focus {
 			border: 2px solid #ff00c8;
 			outline: none;
-			box-shadow: 0 2px 12px #ff00c899;
+			box-shadow: 0 4px 20px rgba(255,0,200,0.4);
 			color: #ff00c8;
+			transform: translateY(-1px);
 		}
 		button {
 			width: 100%;
