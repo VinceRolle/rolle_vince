@@ -53,21 +53,33 @@ class AuthController extends Controller {
 				$email = trim($_POST['email']);
 				$password = trim($_POST['password']);
 
+				// Check if email already exists
 				if ($this->StudentsModel->find_by_email($email)) {
-					$error = 'Email already exists.';
+					$error = 'Email already exists. Please use a different email address.';
 					$this->call->view('auth/register', ['error' => $error]);
 					return;
 				}
 
-				$this->StudentsModel->create_account([
-					'first_name' => $_POST['first_name'],
-					'last_name'  => $_POST['last_name'],
-					'email'      => $email,
-					'password'   => $password
-				]);
+				try {
+					$this->StudentsModel->create_account([
+						'first_name' => $_POST['first_name'],
+						'last_name'  => $_POST['last_name'],
+						'email'      => $email,
+						'password'   => $password
+					]);
 
-				redirect('auth/login');
-				return;
+					redirect('auth/login');
+					return;
+				} catch (Exception $e) {
+					// Handle database constraint violations
+					if (strpos($e->getMessage(), 'Duplicate entry') !== false && strpos($e->getMessage(), 'uq_students_email') !== false) {
+						$error = 'Email already exists. Please use a different email address.';
+					} else {
+						$error = 'Registration failed. Please try again.';
+					}
+					$this->call->view('auth/register', ['error' => $error]);
+					return;
+				}
 			}
 		}
 		$this->call->view('auth/register');

@@ -71,6 +71,12 @@ class StudentsModel extends Model {
             'email'      => $data['email'] ?? '',
             'password'   => password_hash($data['password'] ?? '', PASSWORD_DEFAULT),
         ];
-        return $this->db->table($this->table)->insert($payload);
+        
+        try {
+            return $this->db->table($this->table)->insert($payload);
+        } catch (Exception $e) {
+            // Re-throw the exception to be handled by the controller
+            throw $e;
+        }
     }
 }
