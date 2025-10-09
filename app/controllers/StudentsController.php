@@ -7,7 +7,6 @@ class StudentsController extends Controller {
     {
         parent::__construct();
         $this->call->library('session');
-        $this->call->helper('role');
         if (!$this->session->userdata('logged_in')) {
             redirect('auth/login');
             return;
@@ -44,7 +43,7 @@ class StudentsController extends Controller {
     }
      function create() {
         // Only admin can create new students
-        if (!RoleHelper::is_admin()) {
+        if ($this->session->userdata('user_role') !== 'admin') {
             redirect('students/get-all');
             return;
         }
@@ -62,7 +61,7 @@ class StudentsController extends Controller {
     }
     function update($id) {
         // Only admin can update students
-        if (!RoleHelper::is_admin()) {
+        if ($this->session->userdata('user_role') !== 'admin') {
             redirect('students/get-all');
             return;
         }
@@ -81,7 +80,7 @@ class StudentsController extends Controller {
     }
     function delete($id) {
         // Only admin can delete students
-        if (!RoleHelper::is_admin()) {
+        if ($this->session->userdata('user_role') !== 'admin') {
             redirect('students/get-all');
             return;
         }
@@ -91,7 +90,7 @@ class StudentsController extends Controller {
     }
     function soft_delete($id) {
         // Only admin can soft delete students
-        if (!RoleHelper::is_admin()) {
+        if ($this->session->userdata('user_role') !== 'admin') {
             redirect('students/get-all');
             return;
         }

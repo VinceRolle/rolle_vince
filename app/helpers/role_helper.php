@@ -13,8 +13,7 @@ class RoleHelper {
      * @return bool
      */
     public static function is_admin() {
-        $session = new Session();
-        return $session->userdata('user_role') === 'admin';
+        return isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin';
     }
     
     /**
@@ -23,8 +22,7 @@ class RoleHelper {
      * @return bool
      */
     public static function is_student() {
-        $session = new Session();
-        return $session->userdata('user_role') === 'student';
+        return isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'student';
     }
     
     /**
@@ -34,8 +32,7 @@ class RoleHelper {
      * @return bool
      */
     public static function has_role($role) {
-        $session = new Session();
-        return $session->userdata('user_role') === $role;
+        return isset($_SESSION['user_role']) && $_SESSION['user_role'] === $role;
     }
     
     /**
@@ -69,7 +66,6 @@ class RoleHelper {
      * @return string|null
      */
     public static function get_current_role() {
-        $session = new Session();
-        return $session->userdata('user_role');
+        return $_SESSION['user_role'] ?? null;
     }
 }
