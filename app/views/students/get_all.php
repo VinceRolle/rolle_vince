@@ -528,9 +528,17 @@
 <body>
   <div class="container">
     <div class="header">
-      <h2>Students List</h2>
+      <h2>Students List 
+        <?php if(isset($user_role) && $user_role === 'admin'): ?>
+          <span style="font-size: 0.6em; color: #ff00c8; background: rgba(255,0,200,0.1); padding: 4px 8px; border-radius: 6px; margin-left: 12px;">👑 ADMIN</span>
+        <?php else: ?>
+          <span style="font-size: 0.6em; color: #00ffe7; background: rgba(0,255,231,0.1); padding: 4px 8px; border-radius: 6px; margin-left: 12px;">👨‍🎓 STUDENT</span>
+        <?php endif; ?>
+      </h2>
       <div style="display: flex; gap: 12px; align-items: center;">
-        <a class="btn btn-success" href="<?= site_url('students/create') ?>">Add Student</a>
+        <?php if(isset($user_role) && $user_role === 'admin'): ?>
+          <a class="btn btn-success" href="<?= site_url('students/create') ?>">Add Student</a>
+        <?php endif; ?>
         <a class="btn btn-danger" href="<?= site_url('auth/logout') ?>" style="background: linear-gradient(90deg, #ff00c8 0%, #ff5858 100%); color: #fff; text-shadow: 0 1px 8px #ff00c899;">🚪 Logout</a>
       </div>
     </div>
@@ -567,8 +575,12 @@
             <td><?=$s['last_name'];?></td>
             <td><?=$s['email'];?></td>
             <td class="actions">
-              <a href="<?= site_url().'students/update/'.$s['id'] ?>" class="btn btn-warning" title="Edit"><i class="fa fa-pen-to-square"></i> <span class="d-none d-md-inline">Edit</span></a>
-              <a href="<?= site_url().'students/delete/'.$s['id'] ?>" class="btn btn-danger" title="Delete" onclick="return confirm('Delete student?')"><i class="fa fa-trash"></i> <span class="d-none d-md-inline">Delete</span></a>
+              <?php if(isset($user_role) && $user_role === 'admin'): ?>
+                <a href="<?= site_url().'students/update/'.$s['id'] ?>" class="btn btn-warning" title="Edit"><i class="fa fa-pen-to-square"></i> <span class="d-none d-md-inline">Edit</span></a>
+                <a href="<?= site_url().'students/delete/'.$s['id'] ?>" class="btn btn-danger" title="Delete" onclick="return confirm('Delete student?')"><i class="fa fa-trash"></i> <span class="d-none d-md-inline">Delete</span></a>
+              <?php else: ?>
+                <span style="color: #666; font-style: italic;">View Only</span>
+              <?php endif; ?>
             </td>
           </tr>
           <?php endforeach; ?>

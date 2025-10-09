@@ -75,7 +75,6 @@ class StudentsModel extends Model {
         try {
             return $this->db->table($this->table)->insert($payload);
         } catch (Exception $e) {
-            // Re-throw the exception to be handled by the controller
             throw $e;
         }
     }

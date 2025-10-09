@@ -27,6 +27,7 @@ class AuthController extends Controller {
 					if ($valid) {
 						$this->session->set_userdata('logged_in', true);
 						$this->session->set_userdata('user_id', $user['id']);
+						$this->session->set_userdata('user_role', $user['role'] ?? 'student');
 						redirect('students/get-all');
 						return;
 					}
@@ -89,6 +90,7 @@ class AuthController extends Controller {
 	{
 		$this->session->unset_userdata('logged_in');
 		$this->session->unset_userdata('user_id');
+		$this->session->unset_userdata('user_role');
 		redirect('auth/login');
 	}
 }
